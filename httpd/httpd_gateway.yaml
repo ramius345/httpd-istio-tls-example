@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - httpd-istio-system.apps.cluster-750e.sandbox1320.opentlc.com
+    - foo.com
     port:
       name: https
       number: 443

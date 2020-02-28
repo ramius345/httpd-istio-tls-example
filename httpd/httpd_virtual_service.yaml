@@ -7,7 +7,7 @@ spec:
   gateways:
   - httpd-gateway
   hosts:
-  - httpd-istio-system.apps.cluster-750e.sandbox1320.opentlc.com
+  - foo.com
   http:
   - match:
     - uri:
