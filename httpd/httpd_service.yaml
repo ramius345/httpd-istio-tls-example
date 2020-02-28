@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: httpd
+    app.kubernetes.io/component: httpd
+    app.kubernetes.io/instance: httpd
+    app.kubernetes.io/name: httpd
+    app.kubernetes.io/part-of: httpd-app
+    app.openshift.io/runtime: httpd
+    app.openshift.io/runtime-version: "2.4"
+  name: httpd
+  namespace: httpd
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: httpd
+    deploymentconfig: httpd
+  sessionAffinity: None
+  type: ClusterIP

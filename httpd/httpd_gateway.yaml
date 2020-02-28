@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: httpd-gateway
+  namespace: httpd
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - httpd-istio-system.apps.cluster-750e.sandbox1320.opentlc.com
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      privateKey: /etc/istio/ingressgateway-certs/tls.key
+      serverCertificate: /etc/istio/ingressgateway-certs/tls.crt

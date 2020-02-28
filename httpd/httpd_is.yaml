@@ -1,0 +1,39 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/sclorg/httpd-ex.git
+    creationTimestamp: "2020-02-28T15:27:11Z"
+    generation: 1
+    labels:
+      app: httpd
+      app.kubernetes.io/component: httpd
+      app.kubernetes.io/instance: httpd
+      app.kubernetes.io/name: httpd
+      app.kubernetes.io/part-of: httpd-app
+      app.openshift.io/runtime: httpd
+      app.openshift.io/runtime-version: "2.4"
+    name: httpd
+    namespace: httpd
+    resourceVersion: "1882925"
+    selfLink: /apis/image.openshift.io/v1/namespaces/httpd/imagestreams/httpd
+    uid: a6812168-ed85-4d17-b975-ac8dbaf65842
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/httpd/httpd
+    tags:
+    - items:
+      - created: "2020-02-28T15:27:53Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/httpd/httpd@sha256:f39831c1bf7def36ca8bb29d37cc3aa9bb59d109d65b5e23273daae8cdea44dc
+        generation: 1
+        image: sha256:f39831c1bf7def36ca8bb29d37cc3aa9bb59d109d65b5e23273daae8cdea44dc
+      tag: latest
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

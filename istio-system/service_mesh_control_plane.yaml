@@ -1,0 +1,95 @@
+apiVersion: maistra.io/v1
+kind: ServiceMeshControlPlane
+metadata:
+  finalizers:
+  - maistra.io/istio-operator
+  name: production-install
+  namespace: istio-system
+spec:
+  istio:
+    gateways:
+      istio-egressgateway:
+        autoscaleEnabled: false
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      istio-ingressgateway:
+        autoscaleEnabled: true
+        autoscaleMax: 3
+        autoscaleMin: 3
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+    global:
+      disablePolicyChecks: false
+      mtls:
+        enabled: true
+      policyCheckFailOpen: true
+      proxy:
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+    grafana:
+      enabled: true
+    kiali:
+      dashboard:
+        viewOnlyMode: false
+      enabled: true
+    mixer:
+      policy:
+        autoscaleEnabled: false
+        resources:
+          limits:
+            cpu: 500m
+            memory: 4G
+          requests:
+            cpu: 100m
+            memory: 1G
+      telemetry:
+        autoscaleEnabled: false
+        resources:
+          limits:
+            cpu: 500m
+            memory: 4G
+          requests:
+            cpu: 100m
+            memory: 1G
+    pilot:
+      autoscaleEnabled: false
+      resources:
+        limits:
+          cpu: 500m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      traceSampling: 100
+    tracing:
+      enabled: true
+      jaeger:
+        elasticsearch:
+          nodeCount: 3
+          redundancyPolicy: SingleRedundancy
+          resources:
+            limits:
+              cpu: "1"
+              memory: 16Gi
+            requests:
+              cpu: "1"
+              memory: 16Gi
+          storage:
+            size: 50Gi
+            storageClassName: gp2
+        template: production-elasticsearch
