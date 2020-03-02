@@ -45,6 +45,9 @@ oc apply -n httpd -f httpd/httpd_virtual_service.yaml
 #Update the hosts field
 oc get -n httpd vs httpd -o json | jq ".spec.hosts = [\"$FQDN\"]" | oc apply -n httpd -f -
 
+#This is required for mutual TLS
+oc apply -n httpd -f httpd/httpd_destination_rule.yaml
+
 
 #wait for the project to come up
 while [ true ]; do
